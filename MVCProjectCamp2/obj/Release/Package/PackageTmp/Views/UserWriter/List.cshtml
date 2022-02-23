@@ -1,0 +1,41 @@
+﻿@using MVCProjectCamp2.Hash
+@model EntitiyLayer.Concrete.Writer
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/Writer_Layout.cshtml";
+}
+
+<div class="col-md-6">
+    <div class="card card-primary card-outline">
+        <div class="card-body box-profile">
+            <div class="text-center">
+                <img class="profile-user-img img-fluid img-circle"
+                     src="@Model.Image"
+                     alt="User profile picture">
+            </div>
+            <h3 class="profile-username text-center">@Model.WriterName @Model.WriterSurName</h3>
+            <p class="text-muted text-center">@Model.WriterTitle</p>
+            <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item">
+                    <b>Mail Adresiniz:</b> <a class="float-right">@Model.Mail</a>
+                </li>
+                <li class="list-group-item">
+                    <b>Hakkınızda:</b> <a class="float-right">@Model.WriterAbout</a>
+                </li>
+                <li class="list-group-item">
+                    <b>Şifreniz:</b> <a class="float-right">@Encryption.Desc(Model.Password)</a>
+                </li>
+            </ul>
+            <a href="~/UserWriter/Update/@Model.WriterID" class="btn btn-primary btn-block"><b>Profilimi Güncelle</b></a>
+        </div>
+    </div>
+</div>
+@if (!string.IsNullOrEmpty(ViewBag.message) && ViewBag.message== "mesaj")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Başarılı!", "Profilimi Güncelleme İşlemi Başarılı", "success");
+        };
+    </script>
+    ViewBag.message=null;
+}

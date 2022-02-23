@@ -1,0 +1,95 @@
+﻿@model EntitiyLayer.Concrete.Admin
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>ADMİN GİRİŞ PANELİ</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/login-form-19/css/style.css">
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
+    <link href="~/webv/css/simpleLightbox.css" rel='stylesheet' type='text/css' />
+    <link href="~/webv/css/roadmap.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/webv/css/snow.css">
+    <link rel="stylesheet" href="~/webv/css/aos.css">
+    <link href="~/webv/css/aos-animation.css" rel='stylesheet prefetch' type="text/css" media="all" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body style="background-image: url(https://wallpapercave.com/wp/RbfCYVJ.jpg) ">
+<section class="ftco-section">
+    <div class="banner_section">
+        <div class="snow-container">
+            <div class="snow foreground"></div>
+            <div class="snow foreground layered"></div>
+            <div class="snow middleground"></div>
+            <div class="snow middleground layered"></div>
+            <div class="snow background"></div>
+            <div class="snow background layered"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">ADMİN GİRİŞ PANELİ</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="login-wrap py-5">
+                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(/login-form-19/images/bg.jpg);"></div>
+                    <h3 class="text-center mb-0">Hoşgeldiniz..</h3> <br/>
+                    @using (Html.BeginForm("List", "Login", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
+                            @Html.TextBoxFor(x => x.UserNameAdmin, new {@class = "form-control", required = "", @placeholder = "Kullanıcı Adınızı Yazınız.."})
+                            @Html.ValidationMessageFor(x => x.UserNameAdmin, "", new {@class = "text-danger"})
+                        </div>
+                        <div class="form-group">
+                            <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
+                            @Html.TextBoxFor(x => x.PasswordAdmin, new {@class = "form-control", required = "", @placeholder = "****", @type = "password"})
+                            @Html.ValidationMessageFor(x => x.PasswordAdmin, "", new {@class = "text-danger"})
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <button type="submit" class="btn form-control btn-primary rounded submit px-3">Giriş Yap</button>
+                        </div>
+                        <div class="g-recaptcha" data-sitekey="6Le4BjceAAAAADHWhK7rsrsg_69rKe2vFQ-I2mBl"></div>
+                        <br/>
+                        <br/>
+                      
+                            <a href="~/WriterLogin/Login" class="btn form-control-file btn-outline-info">  YAZAR PANELİNE GİT</a>
+                        
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/login-form-19/js/jquery.min.js"></script>
+    <script src="~/login-form-19/js/popper.js"></script>
+    <script src="~/login-form-19/js/bootstrap.min.js"></script>
+<script src="~/login-form-19/js/main.js"></script>
+@if (!string.IsNullOrEmpty(ViewBag.message))
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Oops.. Hatalı Giriş Yapıldı.", "Kullanıcı Adı Veya Şifreniz Hatalı!!", "error");
+        };
+    </script>
+}
+@if (!string.IsNullOrEmpty(ViewBag.captch))
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Oops..", "Doğrulama Kodunuzu Atlamayın Lütfen Seçiniz!!", "error");
+        };
+    </script>
+}
+</body>
+</html>

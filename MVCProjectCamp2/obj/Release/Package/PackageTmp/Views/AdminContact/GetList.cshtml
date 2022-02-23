@@ -1,0 +1,35 @@
+﻿@model EntitiyLayer.Concrete.Contact
+@{
+    ViewBag.Title = "GetList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<section class="content">
+    <div class="row">
+        @Html.Action("SideBar","AdminContact")
+    <div class="col-md-9">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">İletişim Detay</h3>
+                </div>
+                <div class="card-body p-0">
+                    <div class="mailbox-read-info">
+                        <h5>@Model.Subject</h5>
+                        <h6>
+                            Kimden: <a href="mailto:@Model.Mail">@Model.Mail</a>
+                            <span class="mailbox-read-time float-right">@(((DateTime)Model.Date).ToString("f"))</span>
+                        </h6>
+                    </div>
+                    <div class="mailbox-read-message">
+                       <b><p>@Model.UserName</p></b>
+                        <p>
+                       @Model.ContentText
+                        </p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="~/AdminContact/Delete/@Model.ContactID" class="btn btn-default"><i class="far fa-trash-alt"></i> Sil</a>
+                </div>
+            </div>
+    </div>
+    </div>
+</section>

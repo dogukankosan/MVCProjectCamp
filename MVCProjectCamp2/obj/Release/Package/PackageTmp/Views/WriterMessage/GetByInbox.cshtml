@@ -1,0 +1,33 @@
+﻿@model EntitiyLayer.Concrete.Message
+@{
+    ViewBag.Title = "GetByInbox";
+    Layout = "~/Views/Shared/Writer_Layout.cshtml";
+}
+<section class="content">
+    <div class="row">
+        @Html.Action("SideBard", "WriterMessage")
+        <div class="col-md-9">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">Gelen Kutusu Detay</h3>
+                </div>
+                <div class="card-body p-0">
+                    <div class="mailbox-read-info">
+                        <h5>@Model.Subject</h5>
+                        <h6>
+                            Kimden Geldi: <a href="mailto:@Model.Sender">@Model.Sender</a>
+                            <span class="mailbox-read-time float-right">@(((DateTime)Model.MessageDate).ToString("f"))</span>
+                        </h6>
+                        <img height="50" width="50" src="@ViewBag.image" />  <p>@ViewBag.name</p>
+                    </div>
+                    <div class="mailbox-read-message">  
+                        <p>
+                            @Html.Raw(Model.ContextText)
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

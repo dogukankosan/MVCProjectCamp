@@ -1,0 +1,55 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<EntitiyLayer.Concrete.Content>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/Writer_Layout.cshtml";
+}
+@{
+    string btnclass = string.Empty, passivecontrol = string.Empty;
+}
+<h2 class="text-dark">Başlıklara Yaptığım Yorumlar</h2>
+<hr />
+<br />
+@foreach (var item in Model)
+{
+    <h3 style="color: darkblue;margin-left:30px">@item.Heading.HeadingName</h3>
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                        <div class="post">
+                            <div class="user-block">
+                                <img class="img-circle img-bordered-sm" src="@item.Writer.Image" alt="user image">
+                                <span class="username">
+                                    <a href="~/Home/GetBy/@item.HeadingID">@item.Writer.WriterName @item.Writer.WriterSurName</a>
+                                </span>
+                                <span class="description">@(((DateTime) item.Date).ToString("D"))</span>
+                            </div>
+                            <p>
+                                @Html.Raw(item.ContentText)
+                            </p>
+                        </div>
+                    </div>
+                    <a href="~/WriterWrite/Update/@item.ContentID" class="btn btn-outline-secondary">Yorumu Düzenle</a>
+                    @{
+                        btnclass = @item.Status ? "btn btn-success" : "btn btn-danger";
+                        passivecontrol = @item.Status ? "AKTİF" : "PASİF";
+                    }
+                    @Html.ActionLink(@passivecontrol, "StatusChanged", "WriterWrite", new { id = item.ContentID, status = item.Status }, new { @class = @btnclass, @onclick = "return confirm ('YORUMUNUZUN DURUMU DEĞİŞTİRELECEKTİR EMİN MİSİNİZ ?')" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+}
+<div> @Html.PagedListPager((IPagedList)Model, page => Url.Action("List", new { page }))</div>
+@if (!string.IsNullOrEmpty(ViewBag.message) && ViewBag.message == "update")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Başarılı!", "Başlığın Yorumu Güncelleme İşlemi Başarılı", "success");
+        };
+    </script>
+}

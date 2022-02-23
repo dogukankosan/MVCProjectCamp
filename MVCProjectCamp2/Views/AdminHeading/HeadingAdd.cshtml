@@ -1,0 +1,23 @@
+﻿@model EntitiyLayer.Concrete.Heading
+@{
+    ViewBag.Title = "HeadingAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2 class="m-0 text-dark">BAŞLIK EKLEME SAYFASI</h2>
+<hr />
+@using (Html.BeginForm("HeadingAdd", "AdminHeading", FormMethod.Post))
+{
+    <label>BAŞLIĞIN ADI</label>
+@Html.TextBoxFor(x => x.HeadingName, new { @class = "form-control", @required = "", @MaxLength = 50,@placeholder="Başlığın Adı Yazınız.."})
+@Html.ValidationMessageFor(x => x.HeadingName)
+<br />
+<label>KATEGORİSİNİN ADI</label>
+@Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.listcate, new { @class = "form-control" })
+@Html.ValidationMessageFor(x => x.CategoryID)
+<br />
+<label>OLUŞTURAN YAZAR ADI</label>
+@Html.DropDownListFor(x => x.WriterID, (List<SelectListItem>)ViewBag.listwrit, new { @class = "form-control" })
+@Html.ValidationMessageFor(x => x.WriterID)
+<br />
+<button type="submit" class="btn btn-outline-success">YENİ BAŞLIK EKLE</button>
+}

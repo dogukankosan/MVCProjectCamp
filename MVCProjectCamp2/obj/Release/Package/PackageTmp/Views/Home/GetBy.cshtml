@@ -1,0 +1,48 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<EntitiyLayer.Concrete.Content>
+@{
+    ViewBag.Title = "GetBy";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+@if (!string.IsNullOrEmpty(ViewBag.dgr))
+{
+    <h2 class="m-0 text-dark">@ViewBag.dgr Konu Başlığına Yapılan Yorumlar</h2>
+    <br />
+    <h4 class="m-0 text-blue"> Toplam Yapılan Yorum Sayısı : @ViewBag.count</h4>
+}
+else
+{
+    <h2 class="m-0 text-dark"> Daha Önce Konu Başlığına Yorum Yapılmamıştır.</h2>
+}
+@foreach (var item in Model)
+{
+    <hr />
+
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                        <div class="post">
+                            <div class="user-block">
+                                <img class="img-circle img-bordered-sm" src="@item.Writer.Image" alt="user image">
+                                <span class="username">
+                                    <a href="#">@item.Writer.WriterName @item.Writer.WriterSurName</a>
+                                </span>
+                                <span class="description">@(((DateTime) item.Date).ToString("D"))</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>     @Html.Raw(item.ContentText)
+            </div>
+       
+        </div>
+    </div>
+
+}
+<div> @Html.PagedListPager((IPagedList)Model, page => Url.Action("GetBy", new { page }))</div> 

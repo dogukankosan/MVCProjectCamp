@@ -1,0 +1,19 @@
+﻿@model EntitiyLayer.Concrete.Gallery
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2 class="mt-0 text-dark">RESİM GÜNCELLEME SAYFASI</h2>
+<hr />
+@using (Html.BeginForm("Update", "AdminGallery", FormMethod.Post))
+{
+    <label>RESİM LİNK</label>
+    @Html.TextBoxFor(x => x.ImagePath, new { @class = "form-control", @required = "", @MaxLength = 350, placeholder = "Resim Link Yazınız.." })
+    @Html.ValidationMessageFor(x => x.ImagePath, "", new { @class = "text-danger" })
+    <br />
+    <label>RESİM BİLGİ</label>
+    @Html.TextBoxFor(x => x.ImageName, new { @class = "form-control", @required = "", @MaxLength = 100, placeholder = "Resim Bilgi Yazınız.." })
+    @Html.ValidationMessageFor(x => x.ImageName, "", new { @class = "text-danger" })
+    <br />
+    <button type="submit" class="btn btn-outline-success">RESİM GÜNCELLE</button>
+}

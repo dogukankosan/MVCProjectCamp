@@ -1,0 +1,12 @@
+C:\Users\ghasa\source\repos\EntitiyLayer\bin\Release\EntitiyLayer.dll.config
+C:\Users\ghasa\source\repos\EntitiyLayer\bin\Release\EntitiyLayer.dll
+C:\Users\ghasa\source\repos\EntitiyLayer\bin\Release\EntitiyLayer.pdb
+C:\Users\ghasa\source\repos\EntitiyLayer\bin\Release\EntityFramework.dll
+C:\Users\ghasa\source\repos\EntitiyLayer\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\ghasa\source\repos\EntitiyLayer\bin\Release\EntityFramework.xml
+C:\Users\ghasa\source\repos\EntitiyLayer\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\ghasa\source\repos\EntitiyLayer\obj\Release\EntitiyLayer.csproj.AssemblyReference.cache
+C:\Users\ghasa\source\repos\EntitiyLayer\obj\Release\EntitiyLayer.csproj.CoreCompileInputs.cache
+C:\Users\ghasa\source\repos\EntitiyLayer\obj\Release\EntitiyLayer.csproj.CopyComplete
+C:\Users\ghasa\source\repos\EntitiyLayer\obj\Release\EntitiyLayer.dll
+C:\Users\ghasa\source\repos\EntitiyLayer\obj\Release\EntitiyLayer.pdb

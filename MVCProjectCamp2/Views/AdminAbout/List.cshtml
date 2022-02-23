@@ -1,0 +1,73 @@
+﻿@model List<EntitiyLayer.Concrete.About>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2 class="m-0 text-dark">HAKKINDA LİSTESİ</h2>
+<hr />
+<table id="tbl1" class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>HAKKINDA 1</th>
+            <th>HAKKINDA 2</th>
+            <th>RESİM 1</th>
+            <th>RESİM 2</th>
+            <th>GÜNCELLE</th>
+            <th>SİL</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <th>@item.AboutID</th>
+                <td>@item.AboutDetails1</td>
+                <td>@item.AboutDetails2</td>
+                <td>
+                    <img height="90" width="90" src="@item.AboutImage1" />
+                </td>
+                <td>  <img height="90" width="90" src="@item.AboutImage2" /></td>
+                <td><a href="~/AdminAbout/AboutUpdate/@item.AboutID" class="btn btn-info">GÜNCELLE</a></td>
+                <td>@Html.ActionLink("SİL", "Delete", new { id = item.AboutID }, new { @class = "btn btn-danger", @onclick = "return confirm('SİLMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ ?')" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<button type="button" data-toggle="modal" data-target="#modal1" class="btn btn-outline-warning">YENİ HAKKINDA EKLE</button>
+@Html.Action("AboutAdd", "AdminAbout")
+<script>
+    $('#tbl1').DataTable(
+        {
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+            }
+        }
+    );
+</script>
+@if (!string.IsNullOrEmpty(ViewBag.add) && ViewBag.add == "add")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Başarılı!", "Hakkımda Ekleme İşlemi Başarılı", "success");
+        };
+    </script>
+}
+@if (!string.IsNullOrEmpty(ViewBag.update) && ViewBag.update == "update")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Başarılı!", "Hakkımda Güncelleme  İşlemi Başarılı", "success");
+        };
+    </script>
+}
+@if (!string.IsNullOrEmpty(ViewBag.delete) && ViewBag.delete == "delete")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Başarılı!", "Hakkımda Silme İşlemi Başarılı", "success");
+        };
+    </script>
+}

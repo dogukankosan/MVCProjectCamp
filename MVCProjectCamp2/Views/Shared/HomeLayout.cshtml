@@ -1,0 +1,111 @@
+﻿@using DataAccessLayer.Concrete
+
+@{
+    Layout = null;
+    Context db = new Context();
+    var deger = db.Headings.Where(x => x.Status == true).ToList();
+    var cat = db.Categories.Where(x => x.Status == true).ToList();
+    int count = 0;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
+    <title>SÖZLÜK SAYFASI</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+        </nav>
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <a href="#" class="brand-link">
+                <img height="45" src="https://i.hizliresim.com/cfler5l.png" alt="AdminLTE Logo" />
+                SÖZLÜK SAYFAMIZ
+            </a>
+            <div class="sidebar">
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <a href="~/Home/Vitrin/" class="d-block">
+                        <div class="info">
+                            <img width="45" height="45" src="https://i.hizliresim.com/2hrljo1.png" alt="AdminLTE Logo" />
+                            VİTRİN SAYFASI GİT
+                        </div>
+                    </a>
+                </div>
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        @foreach (var item in cat)
+                        {
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-list"></i>
+                                    <p>
+                                        @item.CategoryName
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+
+                                </a>
+                                @foreach (var x in deger)
+                                {
+                                    if (x.CategoryID == item.CategoryID)
+                                    {
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a href="~/Home/GetBy/@x.HeadingID" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>@x.HeadingName</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        count++;
+                                    }
+                                }
+                            </li>
+                            <span class="badge bg-success float-left">Başlık Sayısı : @count</span>
+                            count = 0;
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <div class="content-wrapper">
+            <div class="content">
+                <div class="container-fluid">
+                    <br />
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <aside class="control-sidebar control-sidebar-dark">
+        </aside>
+        <footer class="main-footer">
+            <strong>Copyright &copy; @DateTime.Now.Year DESIGN BY <a href="https://github.com/dogukankosan" target="_blank">DOĞUKAN KOŞAN</a></strong>
+            <div class="float-right d-none d-sm-inline-block">
+            </div>
+        </footer>
+    </div>
+<script src="~/AdminLTE-3.0.4/plugins/chart.js/Chart.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
+    <script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard3.js"></script>
+    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
+</body>
+</html>

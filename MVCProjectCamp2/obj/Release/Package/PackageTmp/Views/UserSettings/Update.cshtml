@@ -1,0 +1,39 @@
+﻿@model EntitiyLayer.Concrete.Admin
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2 class="mt-0 text-dark">GÜNCELLEME SAYFASI</h2>
+<hr />
+@using (Html.BeginForm("Update", "UserSettings", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.ID, new { @class = "form-control", @readonly = true })
+    @Html.HiddenFor(x=>x.Status)
+    <br />
+    <label>KULLANICI ADI</label>
+    @Html.TextBoxFor(x => x.UserNameAdmin, new { @class = "form-control",placeholder = "Kullanıcı Adı Yazınız.." })
+    @Html.ValidationMessageFor(x => x.UserNameAdmin, "", new { @class = "text-danger" })
+    <br />
+    <label>ŞİFRESİ</label>
+    @Html.TextBoxFor(x =>x.PasswordAdmin, new { @type = "password", @class = "form-control", placeholder = "Şifrenizi Yazınız.." })
+    @Html.ValidationMessageFor(x => x.PasswordAdmin, "", new { @class = "text-danger" })
+    <br />
+    <label>MAİL ADRESİNİZ</label>
+    @Html.TextBoxFor(x =>x.Mail, new { @type = "email", @class = "form-control", @required = "", @maxlength = 75, placeholder = "Mail Adresi Yazınız.." })
+    @Html.ValidationMessageFor(x => x.Mail, "", new { @class = "text-danger" })
+    <br />
+    <label>ROLE</label>
+    <select class="form-control" id="AdminRole" name="AdminRole">
+        <option>A</option> 
+        <option>B</option> 
+        <option>C</option> 
+    </select>
+    @Html.ValidationMessageFor(x => x.AdminRole, "", new { @class = "text-danger" })
+    <br />
+    <label>RESİM LİNKİ</label>
+    @Html.TextBoxFor(x => x.Image, new {@class = "form-control", placeholder = "Resim Linki Yazınız.." })
+    @Html.ValidationMessageFor(x => x.Image, "", new { @class = "text-danger" })
+    <br /><br />
+    <button class="btn btn-outline-success">ADMİN GÜNCELLE</button>
+}
+<br/>

@@ -1,0 +1,15 @@
+﻿@model EntitiyLayer.Concrete.Content
+@{
+    ViewBag.Title = "HeadingContent";
+    Layout = "~/Views/Shared/Writer_Layout.cshtml";
+}
+<h2 class="text-dark">@ViewBag.dgr Başlığına Yorum Yap</h2>
+<hr/>
+@using (Html.BeginForm("HeadingContent", "WriterWrite", FormMethod.Post))
+{
+    <label>YORUM ALANI</label>
+    @Html.TextAreaFor(x => x.ContentText, new { @class = "form-control",required="", @style = "height: 300px", @id = "compose-textarea" })
+@Html.ValidationMessageFor(x => x.ContentText, "", new { @class = "text-danger" })
+<br />
+<button type="submit" class="btn btn-outline-success">YENİ YORUM EKLE</button>
+}

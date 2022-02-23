@@ -1,0 +1,19 @@
+﻿@model EntitiyLayer.Concrete.Content
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/Writer_Layout.cshtml";
+}
+<h1 class="mt-0 text-dark">YORUMU GÜNCELLE</h1>
+<hr />
+@using (Html.BeginForm("Update", "WriterWrite", FormMethod.Post))
+{@Html.HiddenFor(x => x.ContentID)
+@Html.HiddenFor(x => x.HeadingID)
+@Html.HiddenFor(x => x.WriterID)
+@Html.HiddenFor(x => x.Status)
+@Html.HiddenFor(x => x.Date)
+<label>YORUMUNUZ</label>
+@Html.TextAreaFor(x => x.ContentText, new { @class = "form-control", required = "", @style = "height: 300px", @id = "compose-textarea" })
+@Html.ValidationMessageFor(x => x.ContentText, "", new { @class = "text-danger" })
+<br />
+<button type="submit" class="btn btn-outline-success">YORUMU GÜNCELLE</button>
+}

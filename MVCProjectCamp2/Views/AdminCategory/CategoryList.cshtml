@@ -1,0 +1,80 @@
+﻿@model List<EntitiyLayer.Concrete.Category>
+@{
+    ViewBag.Title = "CategoryList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@{
+    string btnclass = string.Empty, passivecontrol = string.Empty;
+}
+
+
+<h2 class="m-0 text-dark">KATEGORİLER LİSTESİ</h2>
+<hr />
+<table id="tbl1" class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>KATEGORİ AD</th>
+            <th>KATEGORİ AÇIKLAMA</th>
+            <th>DURUM</th>
+            <th>GÜNCELLE</th>
+            <th>SİL</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.CategoryID</th>
+                <td>@item.CategoryName</td>
+                <td>@item.CategoryDescription</td>
+                <td>
+                    @{
+                        btnclass = @item.Status ? "btn btn-success" : "btn btn-danger";
+                        passivecontrol = @item.Status ? "AKTİF" : "PASİF";
+                    }
+                    @Html.ActionLink(@passivecontrol, "StatusChanged", "AdminCategory", new { id = item.CategoryID, status = item.Status }, new { @class = @btnclass, @onclick = "return confirm ('KATEGORİNİN DURUMU DEĞİŞTİRELECEKTİR KATEGORİYE BAĞLI BAŞLIKLARINDA DURUMU DEĞİŞTİRELECEKTİR EMİN MİSİNİZ ?')" })
+                </td>
+                <td><a href="~/AdminCategory/CategoryUpdate/@item.CategoryID" class="btn btn-info">GÜNCELLE</a></td>
+                <td>@Html.ActionLink("SİL", "Delete", new { id = item.CategoryID }, new { @class = "btn btn-danger", @onclick = "return confirm('SİLMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ ? SİLERSENİZ KATEGORİYE BAĞLI TÜM İŞLEMLER SİLİNECEKTİR !!')" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<a href="~/AdminCategory/CategoryAdd/" style="margin-left: 10px" class="btn btn-warning">YENİ KATEGORİ EKLE</a>
+<br />
+<br />
+<script>
+    $('#tbl1').DataTable(
+        {
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+            }
+        }
+    );
+</script>
+@if (!string.IsNullOrEmpty(ViewBag.add) && ViewBag.add == "add")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Başarılı!", "Kategori Ekleme İşlemi Başarılı", "success");
+        };
+    </script>
+}
+@if (!string.IsNullOrEmpty(ViewBag.update) && ViewBag.update == "update")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Başarılı!", "Kategori Güncelleme  İşlemi Başarılı", "success");
+        };
+    </script>
+}
+@if (!string.IsNullOrEmpty(ViewBag.delete) && ViewBag.delete == "delete")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Başarılı!", "Kategori Silme İşlemi Başarılı", "success");
+        };
+    </script>
+}

@@ -1,0 +1,44 @@
+﻿@model List<EntitiyLayer.Concrete.Gallery>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Sözlük Galerisi
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-sm-2">
+                                    <a href="@item.ImagePath" data-toggle="lightbox" data-title="@item.ImageName" data-gallery="gallery">
+                                        <img width="400" height="400" src="@item.ImagePath" alt="white sample" />
+                                    </a> <br />
+                                    <br />
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.ActionLink("RESİM GÜNCELLE", "Update", "AdminGallery", new { @id = item.ID }, new { @class = "btn btn-outline-warning" })
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@if (!string.IsNullOrEmpty(ViewBag.update) && ViewBag.update == "update")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Başarılı!", "Resim Güncelleme  İşlemi Başarılı", "success");
+        };
+    </script>
+}

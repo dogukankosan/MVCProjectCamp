@@ -1,0 +1,81 @@
+﻿@using MVCProjectCamp2.Hash
+@model List<EntitiyLayer.Concrete.Admin>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@{
+    string btnclass = string.Empty, passivecontrol = string.Empty;
+}
+<h2 class="text-dark">ADMİN LİSTESİ</h2>
+<hr />
+<table id="tbl1" class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>KULLANICI ADI</th>
+            <th>ŞİFRESİ</th>
+            <th>MAİL ADRESİ</th>
+            <th>ROL</th>
+            <th>RESİM</th>
+            <th>GÜNCELLE</th>
+            <th>DURUM</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <th>@item.ID</th>
+                <td>@item.UserNameAdmin</td>
+                <td>@Encryption.Desc(item.PasswordAdmin)</td>
+                <td>@item.Mail</td>
+                <td>
+                    @item.AdminRole
+                </td>
+                <td><img width="50" height="50" src="@item.Image"></td>
+                <td><a href="~/UserSettings/Update/@item.ID" class="btn btn-info">GÜNCELLE</a></td>
+                @{
+                    btnclass = @item.Status ? "btn btn-success" : "btn btn-danger";
+                    passivecontrol = @item.Status ? "AKTİF" : "PASİF";
+                }
+                <td> @Html.ActionLink(@passivecontrol, "StatusChanged", "UserSettings", new { id = item.ID, status = item.Status }, new { @class = @btnclass, @onclick = "return confirm ('ADMİN DURUMU DEĞİŞTİRELECEKTİR EMİN MİSİNİZ ?')" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<button type="button" data-toggle="modal" data-target="#modal1" style="margin-left: 10px" class="btn btn-outline-warning">YENİ ADMİN EKLE</button>
+<br />
+<br />
+<br />
+<div class="form-control-feedback"><p style="color: red">* (B) EN YETKİLİ</p></div>
+<div class="form-control-feedback"><p style="color: red">* (A) ORTA YETKİLİ</p></div>
+<div class="form-control-feedback"><p style="color: red">* (C) EN YETKİSİZ</p></div>
+@Html.Action("UserAdd", "UserSettings")
+<script>
+    $('#tbl1').DataTable(
+        {
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+            }
+        }
+    );
+</script>
+@if (!string.IsNullOrEmpty(ViewBag.add) && ViewBag.add == "add")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Başarılı!", "Admin Ekleme İşlemi Başarılı", "success");
+        };
+    </script>
+}
+@if (!string.IsNullOrEmpty(ViewBag.update) && ViewBag.update == "update")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Başarılı!", "Admin Güncelleme  İşlemi Başarılı", "success");
+        };
+    </script>
+}

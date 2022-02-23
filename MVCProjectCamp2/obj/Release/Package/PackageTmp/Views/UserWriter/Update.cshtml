@@ -1,0 +1,45 @@
+﻿@model EntitiyLayer.Concrete.Writer
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/Writer_Layout.cshtml";
+}
+
+<h2 style="margin-left: 50px" class="m-0 text-dark">PROFİLİMİ GÜNCELLEME SAYFASI</h2>
+<hr />
+@using (Html.BeginForm("Update", "UserWriter", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.WriterID)
+    @Html.HiddenFor(x => x.Status)
+    <label>ADINIZ</label>
+    @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control", @MaxLength = 30, @placeholder = "Yazarın Adı Giriniz.." })
+    @Html.ValidationMessageFor(x => x.WriterName, "", new { @class = "text-danger" })
+    <br />
+    <label>SOYADINIZ</label>
+    @Html.TextBoxFor(x => x.WriterSurName, new { @class = "form-control", @MaxLength = 30, @placeholder = "Yazarın Soyadı Giriniz.." })
+    @Html.ValidationMessageFor(x => x.WriterSurName, "", new { @class = "text-danger" })
+    <br />
+    <label>UNVANINIZ</label>
+    @Html.TextBoxFor(x => x.WriterTitle, new { @class = "form-control", @MaxLength = 50, @placeholder = "Yazarın Unvanı Giriniz.." })
+    @Html.ValidationMessageFor(x => x.WriterTitle, "", new { @class = "text-danger" })
+    <br />
+    <label>RESİMİNİZ (LİNK)</label>
+    @Html.TextBoxFor(x => x.Image, new { @class = "form-control", @MaxLength = 250, @placeholder = "Yazarın Resim Giriniz.." })
+    @Html.ValidationMessageFor(x => x.Image, "", new { @class = "text-danger" })
+    <br />
+    <label>MAİLİNİZ</label>
+    @Html.TextBoxFor(x => x.Mail, new { @class = "form-control", @MaxLength = 50, @type = "email", @placeholder = "Yazarın Maili Giriniz.." })
+    @Html.ValidationMessageFor(x => x.Mail, "", new { @class = "text-danger" })
+    <br />
+    <label>ŞİFRENİZ</label>
+    @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @MaxLength = 30, @type = "password", @placeholder = "Yazarın Şifresi Giriniz.." })
+    @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+    <br />
+    <label>HAKKINDAKİ BİLGİ</label>
+    @Html.TextAreaFor(x => x.WriterAbout, new { @class = "form-control", @MaxLength = 150, @style = "height: 100px", @placeholder = "Yazarın Hakkında Giriniz.." })
+    @Html.ValidationMessageFor(x => x.WriterAbout, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <button class="btn btn-outline-success" type="submit">PROFİLİMİ GÜNCELLE</button>
+    <br />
+    <br />
+}

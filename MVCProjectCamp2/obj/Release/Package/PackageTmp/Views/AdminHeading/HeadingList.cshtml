@@ -1,0 +1,130 @@
+﻿@model List<EntitiyLayer.Concrete.Heading>
+@{
+    ViewBag.Title = "HeadingList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2 class="m-0 text-dark">BAŞLIKLAR LİSTESİ</h2>
+<hr />
+<div class="card">
+    <div class="card-header">
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <table id="tbl1" class="table table-striped projects">
+            <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th class="text-center" style="width: 20%">
+                        BAŞLIĞIN ADI
+                    </th>
+                    <th class="text-center" style="width: 20%">
+                        OLUŞTURAN YAZAR
+                    </th>
+                    <th class="text-center">
+                        KATEGORİSİ
+                    </th>
+                    <th style="width: 20%" class="text-center">
+                        DURUM
+                    </th>
+                    <th style="width: 20%">
+                        İŞLEMLER
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.HeadingID
+                        </td>
+                        <td class="text-center">
+                            <a>
+                                @item.HeadingName
+                            </a>
+                            <br />
+                            <small>
+                                @(((DateTime)item.Date).ToString("yyyy MMMM dd"))
+                            </small>
+                        </td>
+                        <td class="text-center">
+                            <img alt="Avatar" height="50" class="table-avatar" src="@item.Writer.Image">
+                            <br />
+                            @item.Writer.WriterName @item.Writer.WriterSurName
+                        </td>
+                        <td class="text-center">
+                            @item.Category.CategoryName
+                        </td>
+                        @{
+                            string statusvalue = @item.Status == true ? "AKTİF" : "PASİF";
+                            string bootstrapclass = @item.Status == true ? "badge badge-success" : "badge badge-danger";
+                        }
+                        <td class="project-state">
+                            @Html.ActionLink(statusvalue, "statusChanged", "AdminHeading", new { id = item.HeadingID, status = item.Status }, new { @class = bootstrapclass, @onclick = "return confirm ('BAŞLIĞIN DURUMU DEĞİŞTİRELECEKTİR BAŞLIĞA BAĞLI YORUMLARINDA DURUMU DEĞİŞTİRELECEKTİR EMİN MİSİNİZ ?')" })
+                        </td>
+                        <td class="project-actions text-right">
+                            <a class="btn btn-primary btn-sm" href="~/AdminContent/HeadingByContent/@item.HeadingID">
+                                <i class="fas fa-folder">
+                                </i>
+                                Yazılar
+                            </a>
+                            <a class="btn btn-info btn-sm" href="~/AdminHeading/HeadingUpdate/@item.HeadingID">
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                                Güncelle
+                            </a>
+                            <a class="btn btn-danger btn-sm" onclick="return confirm('SİLMEK İSTERDİĞİNİZDEN EMİN MİSİNİZ ?')" href="~/AdminHeading/Delete/@item.HeadingID">
+                                <i class="fas fa-trash">
+                                </i>
+                                Sil
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <a href="~/AdminHeading/HeadingAdd" class="btn btn-outline-warning">YENİ BAŞLIK EKLE</a>
+</div>
+<script>
+    $('#tbl1').DataTable(
+        {
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+            }
+        }
+    );
+</script>
+@if (!string.IsNullOrEmpty(ViewBag.add) && ViewBag.add == "add")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Başarılı!", "Başlık Ekleme İşlemi Başarılı", "success");
+        };
+    </script>
+}
+@if (!string.IsNullOrEmpty(ViewBag.update) && ViewBag.update == "update")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Başarılı!", "Başlık Güncelleme İşlemi Başarılı", "success");
+        };
+    </script>
+}
+@if (!string.IsNullOrEmpty(ViewBag.delete) && ViewBag.delete == "delete")
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Başarılı!", "Başlık Silme İşlemi Başarılı", "success");
+        };
+    </script>
+}

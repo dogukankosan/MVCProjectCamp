@@ -1,0 +1,44 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<EntitiyLayer.Concrete.Content>
+@{
+    ViewBag.Title = "HeadingContent";
+    Layout = "~/Views/Shared/Writer_Layout.cshtml";
+}
+@if (!string.IsNullOrEmpty(ViewBag.dgr))
+{
+    <h2 class="m-0 text-dark">@ViewBag.dgr Konu Başlığına Yapılan Yorumlar</h2>
+    <br/>
+    <h4 class="m-0 text-blue"> Toplam Yapılan Yorum Sayısı : @ViewBag.count</h4>
+}
+else
+{
+    <h2 class="m-0 text-dark"> Daha Önce Konu Başlığına Yorum Yapılmamıştır.</h2>
+}
+@foreach (var item in Model)
+{
+    <hr />
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                        <div class="post">
+                            <div class="user-block">
+                                <img class="img-circle img-bordered-sm" src="@item.Writer.Image" alt="user image">
+                                <span class="username">
+                                    <a href="~/Home/GetBy/@item.HeadingID">@item.Writer.WriterName @item.Writer.WriterSurName</a>
+                                </span>
+                                <span class="description">@(((DateTime)item.Date).ToString("D"))</span>
+                            </div>
+                            <p>
+                                @Html.Raw(item.ContentText)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div> @Html.PagedListPager((IPagedList)Model, page => Url.Action("HeadingContent", new { page }))</div> 

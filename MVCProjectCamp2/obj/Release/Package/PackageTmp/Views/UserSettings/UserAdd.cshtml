@@ -1,0 +1,43 @@
+﻿@model EntitiyLayer.Concrete.Admin
+<div class="modal" id="modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <a style="margin-left: 442px" href="~/UserSettings/List/" class="btn btn-outline-danger">X</a>
+                    <h2 class="m-0 text-dark">KULLANICI EKLEME SAYFASI</h2><hr />
+                    <div class="modal-body">
+                        @using (Html.BeginForm("Add", "UserSettings", FormMethod.Post))
+                        {
+                            <label>KULLANICI ADI</label>
+                            @Html.TextBoxFor(x => x.UserNameAdmin, new { @class = "form-control", @required = "", @maxlength = 50, placeholder = "Kullanıcı Adı Yazınız.." })
+                            @Html.ValidationMessageFor(x => x.UserNameAdmin, "", new { @class = "text-danger" })
+                            <br />
+                            <label>ŞİFRESİ</label>
+                            @Html.TextBoxFor(x => x.PasswordAdmin, new { @class = "form-control", @required = "", @maxlength = 50, @type ="password", placeholder = "****" })
+                            @Html.ValidationMessageFor(x => x.PasswordAdmin, "", new { @class = "text-danger" })
+                            <br />
+                            <label>MAİL ADRESİNİZ</label>
+                            @Html.TextBoxFor(x =>x.Mail, new { @type = "email", @class = "form-control", @required = "", @maxlength = 75, placeholder = "Mail Adresi Yazınız.." })
+                            @Html.ValidationMessageFor(x => x.Mail, "", new { @class = "text-danger" })
+                            <br />
+                            <label>ROLÜ</label>
+                            <select class="form-control" id="AdminRole" name="AdminRole">
+                                <option>A</option> 
+                                <option>B</option> 
+                                <option>C</option> 
+                            </select>
+                            @Html.ValidationMessageFor(x => x.AdminRole, "", new { @class = "text-danger" })
+                            <br />
+                            <label>RESİM LİNKİ</label>
+                            @Html.TextBoxFor(x => x.Image, new {@class = "form-control", placeholder = "Resim Linki Yazınız.." })
+                            @Html.ValidationMessageFor(x => x.Image, "", new { @class = "text-danger" })
+                            <br /><br />
+                            <button type="submit" class="btn btn-outline-success">ADMİN EKLE</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+﻿@model EntitiyLayer.Concrete.About
+@{
+    ViewBag.Title = "AboutUpdate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1 class="mt-0 text-dark">HAKKINDA GÜNCELLE</h1>
+<hr/>
+@using (Html.BeginForm("AboutUpdate", "AdminAbout", FormMethod.Post))
+{@Html.HiddenFor(x=>x.AboutID)
+    <label>HAKKINDA 1</label>
+    @Html.TextBoxFor(x => x.AboutDetails1, new { @class = "form-control", @required = "", @MaxLength = 250, placeholder = "Hakkında 1 Yazınız.." })
+    @Html.ValidationMessageFor(x => x.AboutDetails1, "", new { @class = "text-danger" })
+    <br />
+    <label>HAKKINDA 2</label>
+    @Html.TextBoxFor(x => x.AboutDetails2, new { @class = "form-control", @required = "", @MaxLength = 250, placeholder = "Hakkında 2 Yazınız.." })
+    @Html.ValidationMessageFor(x => x.AboutDetails2, "", new { @class = "text-danger" })
+    <br />
+    <label>RESİM 1 LİNK</label>
+    @Html.TextBoxFor(x => x.AboutImage1, new { @class = "form-control", @required = "", @MaxLength = 150, placeholder = "Resim 1 Link Yazınız.." })
+    @Html.ValidationMessageFor(x => x.AboutImage1,  "", new { @class = "text-danger" })
+    <br />
+    <label>RESİM 2 LİNK</label>
+    @Html.TextBoxFor(x => x.AboutImage2, new { @class = "form-control", @required = "", @MaxLength = 150,placeholder="Resim 2 Link Yazınız.." })
+    @Html.ValidationMessageFor(x => x.AboutImage2, "", new { @class = "text-danger" })
+    <br />
+    <button type="submit" class="btn btn-outline-success">HAKKINDA GÜNCELLE</button>
+}

@@ -1,0 +1,55 @@
+﻿@model EntitiyLayer.Concrete.Writer
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="login px-4 mx-auto mw-100">
+                    <h5 class="text-center mb-4">YAZAR KAYIT BAŞVURUSU</h5>
+                    <form action="~/Home/RegisterWriter" method="post">
+                        <div class="form-group">
+                            <label>ADINIZ:</label>
+                            @Html.TextBoxFor(x => x.WriterName, new { maxlength = "30", @class = "form-control", @required = "", placeholder = "ADINIZ.." })
+                            @Html.ValidationMessageFor(x => x.WriterName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>SOYADINIZ:</label>
+                            @Html.TextBoxFor(x => x.WriterSurName, new { maxlength = "30", @class = "form-control", @required = "", placeholder = "SOYADINIZ.." })
+                            @Html.ValidationMessageFor(x => x.WriterSurName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-2">RESMİNİZ (LİNK):</label>
+                            @Html.TextBoxFor(x => x.Image, new { maxlength = "250", @class = "form-control", @required = "", placeholder = "RESMİNİZ.." })
+                            @Html.ValidationMessageFor(x => x.Image, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>MAİL:</label>
+                            @Html.TextBoxFor(x => x.Mail, new { maxlength = "200", @class = "form-control", @type = "email", @required = "", placeholder = "MAİLİNİZ.." })
+                            @Html.ValidationMessageFor(x => x.Mail, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>UNVANINIZ (MESLEK):</label>
+                            @Html.TextBoxFor(x => x.WriterTitle, new {maxlength="50", @class = "form-control", @required = "", placeholder = "UNVANINIZ.." })
+                            @Html.ValidationMessageFor(x => x.WriterTitle, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>HAKKINIZDA:</label>
+                            @Html.TextBoxFor(x => x.WriterAbout, new { maxlength = "150",@class = "form-control", @required = "", placeholder = "HAKKINIZDA.." })
+                            @Html.ValidationMessageFor(x => x.WriterAbout, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>ŞİFRE:</label>
+                            @Html.TextBoxFor(x => x.Password, new { maxlength = "200", @class = "form-control", @type = "password", @required = "", placeholder = "ŞİFRE.." })
+                            @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <button type="submit" class="btn btn-primary submit mb-4">BAŞVURU YAP</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+﻿@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>YAZAR GİRİŞİ EKRANI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/login-form-20/css/style.css">
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
+    <link href="~/webv/css/simpleLightbox.css" rel='stylesheet' type='text/css' />
+    <link href="~/webv/css/roadmap.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/webv/css/snow.css">
+    <link rel="stylesheet" href="~/webv/css/aos.css">
+    <link href="~/webv/css/aos-animation.css" rel='stylesheet prefetch' type="text/css" media="all" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body class="img js-fullheight" style="background-image: url(/login-form-20/images/bg.jpg); ">       
+
+<section class="ftco-section">
+    <div class="banner_section">
+        <div class="snow-container">
+            <div class="snow foreground"></div>
+            <div class="snow foreground layered"></div>
+            <div class="snow middleground"></div>
+            <div class="snow middleground layered"></div>
+            <div class="snow background"></div>
+            <div class="snow background layered"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">YAZAR GIRIS EKRANI</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="login-wrap p-0">
+                    <h3 class="mb-4 text-center">Lütfen Giris Yapınız ..</h3>
+                    @using (Html.BeginForm("Login", "WriterLogin", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="Mail" placeholder="Kullanıcı Adı" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input id="password-field" name="Password" class="form-control" placeholder="****" required>
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-primary submit px-3">Giriş Yap</button>
+                        </div>
+                        <div style="margin-left: 30px" class="g-recaptcha" data-sitekey="6Le4BjceAAAAADHWhK7rsrsg_69rKe2vFQ-I2mBl"></div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <script src="~/login-form-20/js/jquery.min.js"></script>
+    <script src="~/login-form-20/js/popper.js"></script>
+    <script src="~/login-form-20/js/bootstrap.min.js"></script>
+    @if (!string.IsNullOrEmpty(ViewBag.message))
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal("Oops.. Hatalı Giriş Yapıldı.", "Kullanıcı Adı Veya Şifreniz Hatalı!!", "error");
+            };
+        </script>
+    }
+    @if (!string.IsNullOrEmpty(ViewBag.captch))
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal("Oops..", "Doğrulama Kodunuzu Atlamayın Lütfen Seçiniz!!", "error");
+            };
+        </script>
+    }
+    <script src="~/login-form-20/js/main.js"></script>
+</body>
+</html>

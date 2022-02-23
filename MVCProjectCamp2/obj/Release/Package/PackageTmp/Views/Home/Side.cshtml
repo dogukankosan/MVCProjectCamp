@@ -1,0 +1,24 @@
+﻿@using EntitiyLayer.Concrete
+@model List<EntitiyLayer.Concrete.Gallery>
+<section class="gallery py-md-5 py-3" id="projects">
+    <div class="gallery-inner container py-md-5 pb-3">
+        <h3 class="tittle-w3 text-uppercase mb-lg-5 mb-3 text-center">PROJE GÖRSELLERİ</h3>
+        <div class="row">
+            @foreach (Gallery item in Model)
+            {
+            <div class="col-md-4 proj_gallery_grid" data-aos="zoom-in">
+                <div class="section_1_gallery_grid">
+                    <a title="@item.ImageName" href="@item.ImagePath">
+                        <div class="section_1_gallery_grid1">
+                            <img src="@item.ImagePath" alt=" " class="img-fluid" />
+                            <div class="proj_gallery_grid1_pos">
+                                <h3>Göster</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>

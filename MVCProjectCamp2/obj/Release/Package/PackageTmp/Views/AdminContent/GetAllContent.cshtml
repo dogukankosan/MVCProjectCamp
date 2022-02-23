@@ -1,0 +1,48 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<EntitiyLayer.Concrete.Content>
+@{
+    ViewBag.Title = "GetAllContent";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@{
+    string btnclass = string.Empty, passivecontrol = string.Empty;
+}
+@using (Html.BeginForm("GetAllContent", "AdminContent", FormMethod.Post))
+{@Html.TextBox("source", "", new { @class = "form-control", maxlength = 250, @placeholder = "Aranacak Yorum İçeriğini İfadeyi Yazınız..." })
+
+}
+<hr />
+<br/>
+@foreach (var item in Model)
+{
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                        <div class="post">
+                            <div class="user-block">
+                                <img class="img-circle img-bordered-sm" src="@item.Writer.Image" alt="user image">
+                                <span class="username">
+                                    <a href="~/Home/GetBy/@item.HeadingID">@item.Writer.WriterName @item.Writer.WriterSurName</a>
+                                </span>
+                                <span class="description">@(((DateTime)item.Date).ToString("D"))</span>
+                            </div>
+                            <p>
+                                @Html.Raw(item.ContentText)
+                            </p>
+                        </div>
+                    </div>
+                    @{
+                        btnclass = @item.Status ? "badge badge-success" : "badge badge-danger";
+                        passivecontrol = @item.Status ? "AKTİF" : "PASİF";
+                    }
+                    <span class="@btnclass">@passivecontrol</span>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div> @Html.PagedListPager((IPagedList)Model, page => Url.Action("GetAllContent", new { page }))</div>
+

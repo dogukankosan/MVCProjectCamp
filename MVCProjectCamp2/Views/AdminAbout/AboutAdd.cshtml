@@ -1,0 +1,35 @@
+﻿@model EntitiyLayer.Concrete.About
+<div class="modal" id="modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <a style="margin-left: 442px" href="~/AdminAbout/List/" class="btn btn-outline-danger">X</a>
+                    <h2 class="m-0 text-dark">HAKKINDA EKLEME SAYFASI</h2><hr />
+                    <div class="modal-body">
+                        @using (Html.BeginForm("AboutAddpost", "AdminAbout", FormMethod.Post))
+                        {
+                            <label>HAKKINDA 1</label>
+                            @Html.TextBoxFor(x => x.AboutDetails1, new { @class = "form-control", @required = "", @MaxLength = 250, placeholder = "Hakkında 1 Yazınız.." })
+                            @Html.ValidationMessageFor(x => x.AboutDetails1,"",new {@class="text-danger"})
+                            <br />
+                            <label>HAKKINDA 2</label>
+                            @Html.TextBoxFor(x => x.AboutDetails2, new { @class = "form-control", @required = "", @MaxLength = 250, placeholder = "Hakkında 2 Yazınız.." })
+                            @Html.ValidationMessageFor(x => x.AboutDetails2, "", new { @class = "text-danger" })
+                            <br />
+                            <label>RESİM 1 LİNK</label>
+                            @Html.TextBoxFor(x => x.AboutImage1, new { @class = "form-control", @required = "", @MaxLength = 150, placeholder = "Resim 1 Link Yazınız.." })
+                            @Html.ValidationMessageFor(x => x.AboutImage1, "", new { @class = "text-danger" })
+                            <br />
+                            <label>RESİM 2 LİNK</label>
+                            @Html.TextBoxFor(x => x.AboutImage2, new { @class = "form-control", @required = "", @MaxLength = 150, placeholder = "Resim 2 Link Yazınız.." })
+                            @Html.ValidationMessageFor(x => x.AboutImage2, "", new { @class = "text-danger" })
+                            <br />
+                            <button type="submit" class="btn btn-outline-success">YENİ HAKKINDA EKLE</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+C:\Users\ghasa\source\repos\DataAccessLayer\bin\Release\DataAccessLayer.dll.config
+C:\Users\ghasa\source\repos\DataAccessLayer\bin\Release\DataAccessLayer.dll
+C:\Users\ghasa\source\repos\DataAccessLayer\bin\Release\DataAccessLayer.pdb
+C:\Users\ghasa\source\repos\DataAccessLayer\bin\Release\EntitiyLayer.dll
+C:\Users\ghasa\source\repos\DataAccessLayer\bin\Release\EntityFramework.dll
+C:\Users\ghasa\source\repos\DataAccessLayer\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\ghasa\source\repos\DataAccessLayer\bin\Release\EntitiyLayer.pdb
+C:\Users\ghasa\source\repos\DataAccessLayer\bin\Release\EntitiyLayer.dll.config
+C:\Users\ghasa\source\repos\DataAccessLayer\bin\Release\EntityFramework.xml
+C:\Users\ghasa\source\repos\DataAccessLayer\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\ghasa\source\repos\DataAccessLayer\obj\Release\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\ghasa\source\repos\DataAccessLayer\obj\Release\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\ghasa\source\repos\DataAccessLayer\obj\Release\DataAccessLayer.csproj.CopyComplete
+C:\Users\ghasa\source\repos\DataAccessLayer\obj\Release\DataAccessLayer.dll
+C:\Users\ghasa\source\repos\DataAccessLayer\obj\Release\DataAccessLayer.pdb

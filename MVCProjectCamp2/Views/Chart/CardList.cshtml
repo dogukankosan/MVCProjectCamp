@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "CardList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 style="margin-left: 50px" class="m-0 text-dark">KART LİSTESİ</h2>
+<hr/>
+<div class="row">
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>@ViewBag.count</h3>
+
+                <p>TOPLAM KATEGORİ SAYISI</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>@ViewBag.software<sup style="font-size: 10px"></sup></h3>
+
+                <p>@ViewBag.name KATEGORİSİN BAŞLIK SAYISI</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>@ViewBag.max</h3>
+                <h6>EN FAZLA BAŞLIK SAYISI BULUNAN KATEGORİ</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-danger">
+            <div class="inner">
+                <h3>@ViewBag.acontains</h3>
+                <p>YAZAR ADINDA A HARFİ GEÇEN YAZAR SAYISI</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-danger">
+            <div class="inner">
+                <h3>@ViewBag.trueandfalse</h3>
+                <p>KATEGORİLERDE AKTİF-PASİF FARKI</p>
+            </div>
+        </div>
+    </div>
+</div>

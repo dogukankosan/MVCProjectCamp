@@ -1,0 +1,35 @@
+﻿@model EntitiyLayer.Concrete.Message
+@{
+    ViewBag.Title = "DeleteByID";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="row">
+        @Html.Action("SideBar", "AdminContact")
+        <div class="col-md-9">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">Giden Kutusu Silinen Detay</h3>
+                </div>
+                <div class="card-body p-0">
+                    <div class="mailbox-read-info">
+                        <h5>@Model.Subject</h5>
+                        <h6>
+                            Kime Gönderildi: <a href="mailto:@Model.Receiver">@Model.Receiver</a>
+                            <br />
+                            <img src="@ViewBag.image" width="50" height="50" /> <p>@ViewBag.name</p>
+                            <span class="mailbox-read-time float-right">@(((DateTime)Model.MessageDate).ToString("f"))</span>
+                            <br />
+                        </h6>
+                    </div>
+                    <div class="mailbox-read-message">
+                        <p>
+                            @Html.Raw(Model.ContextText)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
