@@ -69,9 +69,15 @@ MVCProjectCamp/
 ## 🤝 Katkı
 
 Katkı sağlamak için projeyi forklayabilir ve pull request gönderebilirsiniz.
+## 📄 Lisans
+
+MIT License
 
 ---
 
-## 📄 Lisans
+## 📬 İletişim
 
-Bu proje MIT lisansı ile sunulmuştur.
+- 👨‍💻 Geliştirici: [@dogukankosan](https://github.com/dogukankosan)  
+- 🐞 Suggestions or issues: [Issues sekmesi](https://github.com/dogukankosan/LogoWhatsappEntegrasyon/issues)
+
+---
